@@ -4,5 +4,5 @@
 { channels, ... }:
 
 final: prev: {
-  inherit (channels.unstable.nodePackages) typescript-language-server;
+  inherit (channels.unstable) typescript-language-server;
 }
