@@ -1,0 +1,18 @@
+{
+  "name": "vtsls",
+  "version": "0.2.6",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "vtsls": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vtsls/language-server": "^0.2.6"
+  }
+}
