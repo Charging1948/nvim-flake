@@ -1,3 +1,5 @@
+# INFO: This file has been renamed, to only exist as an example
+
 { channels, ... }:
 final: prev:
 let
