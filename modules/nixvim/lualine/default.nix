@@ -28,13 +28,13 @@ in
     ];
 
     componentSeparators = {
-      left = "⋮";
-      right = "⋮";
+      left = "|";
+      right = "|";
     };
 
     sectionSeparators = {
-      left = "";
-      right = "";
+      left = " ";
+      right = " ";
     };
 
     theme = with theme; {
@@ -120,7 +120,7 @@ in
         {
           name = helpers.mkRaw ''
             function()
-              return ""
+              return ""
             end
           '';
         }
@@ -136,12 +136,31 @@ in
       lualine_x = [
         {
           name = "diagnostics";
-          extraConfig = {
-            update_in_insert = true;
-          };
         }
       ];
-      lualine_y = [ "" ];
+      lualine_y = [
+        {
+          __unkeyed-1 = "aerial";
+          colored = true;
+          cond = helpers.mkRaw
+            ''
+              function()
+                local buf_size_limit = 1024 * 1024
+                if vim.api.nvim_buf_get_offset(0, vim.api.nvim_buf_line_count(0)) > buf_size_limit then
+                  return false
+                end
+
+                return true
+              end
+            '';
+          dense = false;
+          dense_sep = ".";
+          depth = {
+            __raw = "nil";
+          };
+          sep = " ) ";
+        }
+      ];
       lualine_z = [
         { name = "%l:%c"; }
         {
@@ -167,20 +186,20 @@ in
               newfile = " ";
             };
 
-            windows_color = {
-              active = {
-                fg = theme.nord6;
-                bg = theme.nord10;
-              };
-              inactive = {
-                fg = theme.nord6;
-                bg = theme.nord1;
-              };
-            };
+            # windows_color = {
+            #   active = {
+            #     fg = theme.nord6;
+            #     bg = theme.nord10;
+            #   };
+            #   inactive = {
+            #     fg = theme.nord6;
+            #     bg = theme.nord1;
+            #   };
+            # };
           };
 
           separator = {
-            right = "";
+            right = "|";
           };
         }
       ];
@@ -190,20 +209,20 @@ in
         {
           name = "tabs";
 
-          extraConfig = {
-            tabs_color = {
-              active = {
-                fg = theme.nord6;
-                bg = theme.nord10;
-              };
-              inactive = {
-                fg = theme.nord6;
-                bg = theme.nord1;
-              };
-            };
-          };
+          # extraConfig = {
+          #   tabs_color = {
+          #     active = {
+          #       fg = theme.nord6;
+          #       bg = theme.nord10;
+          #     };
+          #     inactive = {
+          #       fg = theme.nord6;
+          #       bg = theme.nord1;
+          #     };
+          #   };
+          # };
           separator = {
-            left = "";
+            left = "|";
           };
         }
       ];
@@ -235,10 +254,10 @@ in
             icon_only = true;
           };
 
-          color = {
-            fg = theme.nord0;
-            bg = theme.nord6;
-          };
+          # color = {
+          #   fg = theme.nord0;
+          #   bg = theme.nord6;
+          # };
         }
         {
           name = "filename";
@@ -256,13 +275,13 @@ in
           };
 
           separator = {
-            left = "";
+            left = "|";
           };
 
-          color = {
-            fg = theme.nord6;
-            bg = theme.nord10;
-          };
+          # color = {
+          #   fg = theme.nord6;
+          #   bg = theme.nord10;
+          # };
         }
       ];
     };
@@ -281,10 +300,10 @@ in
             icon_only = true;
           };
 
-          color = {
-            fg = theme.nord6;
-            bg = theme.nord1;
-          };
+          # color = {
+          #   fg = theme.nord6;
+          #   bg = theme.nord1;
+          # };
         }
         {
           name = "filename";
@@ -302,7 +321,7 @@ in
           };
 
           separator = {
-            left = "";
+            left = "|";
           };
 
           color = {
