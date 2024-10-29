@@ -11,6 +11,10 @@ in
 {
   extraPackages = with pkgs; [
     nixfmt-rfc-style
+    R
+    rPackages.languageserver
+    rustc
+    cargo
   ];
 
   extraPlugins = with pkgs.vimPlugins; [
@@ -18,18 +22,18 @@ in
   ];
 
   extraConfigLua = ''
-		do
-			require("actions-preview").setup({
-				diff = {
-					ignore_whitespace = true,
-				},
-				highlight_command = {
-					require("actions-preview.highlight").diff_highlight()
-				},
-				backend = { "telescope" },
-			})
-		end
-	'';
+    		do
+    			require("actions-preview").setup({
+    				diff = {
+    					ignore_whitespace = true,
+    				},
+    				highlight_command = {
+    					require("actions-preview.highlight").diff_highlight()
+    				},
+    				backend = { "telescope" },
+    			})
+    		end
+    	'';
 
   extraConfigLuaPre = ''
     do
@@ -141,24 +145,28 @@ in
     };
 
     servers = {
+      angularls = {
+        enable = true;
+        package = pkgs.plusultra.angular-language-server;
+      };
       astro.enable = true;
       clangd.enable = true;
-      cmake.enable = true;
+      # cmake.enable = true;
       cssls.enable = true;
       dockerls.enable = true;
-      docker-compose-language-service.enable = true;
+      docker_compose_language_service.enable = true;
       eslint.enable = true;
-      emmet-ls.enable = true;
+      emmet_ls.enable = true;
       gleam.enable = true;
-      gdscript.enable = true;
+      # gdscript.enable = true;
       gopls.enable = true;
-      graphql.enable = true;
-      helm-ls.enable = true;
+      # graphql.enable = true;
+      # helm-ls.enable = true;
       html.enable = true;
       jsonls.enable = true;
       ltex.enable = true;
-      lua-ls.enable = true;
-      nginx-language-server.enable = true;
+      lua_ls.enable = true;
+      # nginx-language-server.enable = true;
       nixd = {
         enable = true;
 
@@ -189,24 +197,35 @@ in
         };
       };
       nushell.enable = true;
-      perlpls.enable = true;
-      phpactor.enable = true;
-      prismals.enable = true;
+      # perlpls.enable = true;
+      # phpactor.enable = true;
+      # prismals.enable = true;
       pyright.enable = true;
-
-      rust-analyzer = {
-        enable = true;
-        installCargo = true;
-        installRustc = true;
-      };
-
+      r_language_server.enable = true;
+      r_language_server.package = pkgs.rPackages.languageserver;
+      ruff.enable = true;
+      scheme_langserver.enable = true;
       sqls.enable = true;
+      # statix.enable = true;
+      # statix.cmd = ["statix" "check"];
+      svelte.enable = true;
       tailwindcss.enable = true;
-      terraformls.enable = true;
-      tsserver.enable = true;
-      vuels.enable = true;
+      taplo.enable = true;
+      templ.enable = true;
+      tinymist.enable = true;
+      # terraformls.enable = true;
+      ts_ls.enable = true;
+      # unocss.enable = true;
+      vuels = {
+        enable = true;
+        package = pkgs.nodePackages_latest.vls;
+      };
+      vtsls = {
+        enable = true;
+        package = pkgs.plusultra.vtsls;
+      };
       yamlls.enable = true;
-      zls.enable = true;
+      # zls.enable = true;
     };
   };
 }
