@@ -44,14 +44,26 @@ in {
         lualine_a = [
           {
             __unkeyed-1 = "mode";
-            separators = {
+            separator = {
               left = "";
             };
-            right_padding = 2;
+						padding = {
+							left = 1;
+							right = 2;
+						};
           }
         ];
         lualine_b = [
-          "filename"
+					{
+						__unkeyed-1 = "filename";
+						separator = {
+							right = "";
+						};
+						padding = {
+							right = 1;
+							left = 2;
+						};
+					}
         ];
         lualine_c = [
           "%=" # Add centered components below this line
@@ -68,8 +80,12 @@ in {
 					""
         ];
         lualine_y = [
-          "filetype"
-          "progress"
+					{
+						__unkeyed-1 = "filetype";
+						separator = {
+							left = "";
+						};
+					}
         ];
         lualine_z = [
           {
@@ -77,7 +93,6 @@ in {
             separator = {
               right = "";
             };
-            left_padding = 2;
           }
         ];
       };
